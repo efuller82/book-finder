@@ -1,0 +1,32 @@
+Set up backend
+    -set up all routes
+        -test everything using postman
+
+    1. serve simple react app 
+    2. routes
+        a) google book search
+            * GET
+            * /search
+            * use axios to make request
+            * does not interact with mongodb
+        b) save button
+            * POST 
+            * /save book 
+            * summary, image, book name, author
+        c) saved 
+            * the html page (react component)
+            * retreive all saved books (find all)
+        d) delete button
+            * / delete book 
+
+Front end
+    using react router:
+        -/
+            * onClick event on the search that makes axios call
+        -/save 
+            * componentDidMount
+
+    I MAY HAVE INSTALLED REACT-ROUTER-DOM INTO THE WRONG FOLDER
+
+            
+    
