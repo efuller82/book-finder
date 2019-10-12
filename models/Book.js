@@ -10,7 +10,7 @@ var BookSchema = new Schema({
     },
     author: {
         type: String,
-        required: TextTrackCue,
+        required: true,
     },
     link: String,
     image: String,

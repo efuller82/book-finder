@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var app = express();
 
 // database configuration
-var databaseUrl = 'bookFiner';
+var databaseUrl = 'bookFinder';
 var collections = ['savedBooks'];
 
 // Hook mongojs configuration to the db variable
