@@ -1,7 +1,6 @@
-var path = require('path');
+// var path = require('path');
 var axios = require('axios');
 var db = require('../models/index')
-
 //! How do I connect to mongodb here?
 //! I'm having trouble understanding how models interact with mongodb
 
@@ -22,8 +21,10 @@ module.exports = function (app) {
     // ! cannot get create of undefined
     // api route to post saved books
     app.post('/saved', (req, res) => {
+        console.log(req.params);
         db.Book.create(req.body).then(
             (response) => {
+                console.log(response);
                 res.json(response);
             }
         ).catch(
