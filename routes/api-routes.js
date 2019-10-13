@@ -18,7 +18,7 @@ module.exports = function (app) {
     )
 
     // api route to post saved books
-    app.post('/saved', (req, res) => {
+    app.post('/api/books', (req, res) => {
         console.log(req.body);
         db.Book.create(req.body).then(
             (response) => {
@@ -33,7 +33,7 @@ module.exports = function (app) {
     });
 
     // api route to get saved books from database
-    app.get('/saved', function (req, res) {
+    app.get('/api/books', function (req, res) {
         //Find all results from the scrapedData collection in the db
         db.Book.find({}, function (error, found) {
             // Throw any errors to the console
@@ -49,7 +49,7 @@ module.exports = function (app) {
     });
 
     // route for deleting from db
-    app.delete('/saved/:_id', (req, res) => {
+    app.delete('/books/:id', (req, res) => {
         db.Book.findByIdAndDelete(req.params.id)
             .then((response) => {
                 res.json(response);
