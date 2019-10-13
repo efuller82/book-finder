@@ -1,16 +1,15 @@
 // var path = require('path');
 var axios = require('axios');
 var db = require('../models/index')
-//! How do I connect to mongodb here?
-//! I'm having trouble understanding how models interact with mongodb
 
 module.exports = function (app) {
-    //! object data in console looks strange; times out on postman
+    //! data comes back correctly in console but does not print to /search
     // getting the books from google books api
-    app.get('/search', (req, res) => {
+    app.post('/search', (req, res) => {
         axios.get('https://www.googleapis.com/books/v1/volumes?q=1984')
             .then((response) => {
-                console.log('response', response.data)
+                res.json(response.data.items);
+                console.log('response', response.data.items)
             })
             .catch((error) => {
                 console.log('error', error);
@@ -18,7 +17,6 @@ module.exports = function (app) {
     }
     )
 
-    // ! no error but nothing happens
     // api route to post saved books
     app.post('/saved', (req, res) => {
         console.log(req.body);
@@ -34,7 +32,6 @@ module.exports = function (app) {
         );
     });
 
-    // ! no error but nothing happens
     // api route to get saved books from database
     app.get('/saved', function (req, res) {
         //Find all results from the scrapedData collection in the db
@@ -51,5 +48,16 @@ module.exports = function (app) {
         });
     });
 
+    // route for deleting from db
+    app.delete('/saved/:_id', (req, res) => {
+        db.Book.findByIdAndDelete(req.params.id)
+            .then((response) => {
+                res.json(response);
+            }
+            ).catch(
+                (err) => {
+                    res.json(err);
+                });
+    });
 
 };
