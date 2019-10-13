@@ -18,10 +18,10 @@ module.exports = function (app) {
     }
     )
 
-    // ! cannot get create of undefined
+    // ! no error but nothing happens
     // api route to post saved books
     app.post('/saved', (req, res) => {
-        console.log(req.params);
+        console.log(req.body);
         db.Book.create(req.body).then(
             (response) => {
                 console.log(response);
@@ -34,7 +34,7 @@ module.exports = function (app) {
         );
     });
 
-    // ! cannot read find of undefined
+    // ! no error but nothing happens
     // api route to get saved books from database
     app.get('/saved', function (req, res) {
         //Find all results from the scrapedData collection in the db

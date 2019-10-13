@@ -4,6 +4,10 @@ var mongoose = require('mongoose');
 // initialize express
 var app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Make public a static folder
+app.use(express.static("public"));
 
 //!Need to connect to mongoose
 // Connect to the Mongo DB
