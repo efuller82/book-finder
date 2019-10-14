@@ -3,10 +3,9 @@ var axios = require('axios');
 var db = require('../models/index')
 
 module.exports = function (app) {
-    //! data comes back correctly in console but does not print to /search
     // getting the books from google books api
-    app.post('/search', (req, res) => {
-        axios.get('https://www.googleapis.com/books/v1/volumes?q=1984')
+    app.post('/api/search/:searchtitle', (req, res) => {
+        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + req.params.searchtitle)
             .then((response) => {
                 res.json(response.data.items);
                 console.log('response', response.data.items)

@@ -4,7 +4,7 @@ import Jumbotron from '../components/Jumbotron';
 import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
 import Results from '../components/Results';
-import API from '../utils/API';
+import axios from 'axios';
 
 
 class Search extends Component {
@@ -13,19 +13,25 @@ class Search extends Component {
         search: ''
     }
 
-    SearchBooks = query => {
-        API.search(query)
-            .then(res => this.setState({ result: res.data }))
-            .catch(err => console.log(err));
-    }
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+        console.log(event.target);
+    };
 
-    //! working on this
+
+
+    // //! working on this
     handleFormSubmit = event => {
         event.preventDefault();
-        this.SearchBooks(this.state.search);
+        // this.SearchBooks(this.state.search);
         console.log('yay a click has been registered');
-        // this.searchBooks(this.state.search);
+        console.log(this.state.title);
+        // axios.get('/api/search/:searchtitle')
     };
+
 
 
     render() {
@@ -34,7 +40,10 @@ class Search extends Component {
                 <Nav></Nav>
                 <Jumbotron></Jumbotron>
                 <SearchCard
+                    name='search'
                     handleFormSubmit={this.handleFormSubmit}
+                    value={this.state.search}
+                    onChange={this.handleInputChange}
                 >
 
                 </SearchCard>

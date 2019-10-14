@@ -1,7 +1,16 @@
 import React from 'react';
 import './style.css';
-// import { PromiseProvider } from 'mongoose';
 
+// class Search extends Component {
+//     state = {
+//         result: {},
+//         search: ''
+//     }
+
+
+// handleChange(event) {
+//     this.setState({ title: event.target.value })
+// }
 
 function SearchCard(props) {
 
@@ -10,7 +19,15 @@ function SearchCard(props) {
             <div className='card-body'>
                 <div className='card-title'>Search for a Book</div>
                 <form>
-                    <input type='text' className='form-control' id='bookSearch'></input>
+                    <input type='text'
+                        name='title'
+                        className='form-control'
+                        id='bookSearch'
+                    // value={this.state.title}
+                    // onChange={this.handleChange.bind(this)}
+                    >
+
+                    </input>
                     {/* //! working on this */}
                     <button type='submit' onClick={props.handleFormSubmit} className="submitBtn btn btn-dark">Search</button>
                 </form>
@@ -18,6 +35,6 @@ function SearchCard(props) {
         </div>
     )
 }
-
+// }
 
 export default SearchCard;

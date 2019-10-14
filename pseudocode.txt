@@ -29,4 +29,9 @@ Front end
     I MAY HAVE INSTALLED REACT-ROUTER-DOM INTO THE WRONG FOLDER
 
             
-    
+    try to hit google search route from front end
+
+    2. send param back
+
+    ###Class example for forms
+        make component smart to listen for input change
