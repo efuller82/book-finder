@@ -1,15 +1,17 @@
 import React from 'react';
+// import SearchCard from '../SearchCard';
 
-function Results() {
+//! working on this whole page
+function Results(props) {
     return (
         <div className='card'>
             <div className='card-body'>
-                <div className='card-title'>
+                <h2 className='card-title'>
                     Results
-            </div>
+            </h2>
             </div>
         </div>
+
     );
 }
-
 export default Results;
