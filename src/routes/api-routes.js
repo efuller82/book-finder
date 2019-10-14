@@ -5,7 +5,7 @@ var db = require('../models/index')
 module.exports = function (app) {
     // getting the books from google books api
     app.post('/api/search/:searchtitle', (req, res) => {
-        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + req.params.searchtitle)
+        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + req.params.searchTitle)
             .then((response) => {
                 res.json(response.data.items);
                 console.log('response', response.data.items)
