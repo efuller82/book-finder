@@ -5,6 +5,7 @@ import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
 import Results from '../components/Results';
 import axios from 'axios';
+import API from '../utils/API';
 
 
 class Search extends Component {
@@ -43,6 +44,16 @@ class Search extends Component {
             .catch(err => this.setState({ error: err.items }));
     }
 
+    handleSavedButton = event => {
+        event.preventDefault();
+        console.log(this.state.books)
+        let savedBooks = this.state.books.filter(book => book.id === event.target.id)
+        savedBooks = savedBooks[0];
+        API.saveBook(savedBooks)
+            .then(this.setState({ message: alert('book saved') }))
+            .catch(err => console.log(err))
+    }
+
     resetState = () => {
         this.setState({
             result: {},
@@ -75,6 +86,7 @@ class Search extends Component {
                             title={book.volumeInfo.title}
                             link={book.volumeInfo.previewLink}
                             image={book.volumeInfo.imageLinks.thumbnail}
+                            handleSavedButton={this.handleSavedButton}
                         />
                     )
                 })}

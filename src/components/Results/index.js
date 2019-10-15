@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import books from '../../routes/api/books';
 
 function Results(props) {
     return (
@@ -15,7 +16,7 @@ function Results(props) {
                 </div>
                 <div>
                     <a href={props.link} className='btn btn-success' role='button'>View</a>
-                    <button className='btn btn-danger'>Save</button>
+                    <button className='btn btn-danger' id={books.id} onClick={(event) => props.handleSavedButton(event)}>Save</button>
                 </div>
             </div>
         </div>
