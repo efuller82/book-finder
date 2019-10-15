@@ -4,13 +4,14 @@ import Jumbotron from '../components/Jumbotron';
 import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
 import Results from '../components/Results';
-// import axios from 'axios';
+import axios from 'axios';
 
 
 class Search extends Component {
     state = {
         result: {},
-        search: ''
+        search: '',
+        books: []
     }
 
     handleInputChange = event => {
@@ -21,16 +22,34 @@ class Search extends Component {
         console.log(event.target);
     };
 
+    handleFormSubmit = event => {
+        event.preventDefault();
+        const input = this.state.search;
+        console.log(input);
+        axios.get('https://www.googleapis.com/books/v1/volumes?q=' + input)
+            .then(res => {
+                if (res.data.items === 'error') {
+                    this.resetState();
+                    throw new Error(res.data.items);
+                }
+                else {
+                    let results = res.data.items;
 
+                    // Render books in dom by updating state.books
+                    console.log(results);
+                    this.setState({ books: results, error: '' });
+                }
+            })
+            .catch(err => this.setState({ error: err.items }));
+    }
 
-    // // //! working on this
-    // handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     // this.SearchBooks(this.state.search);
-    //     console.log('yay a click has been registered');
-    //     console.log(this.state.title);
-    //     axios.get('/api/search/:searchTitle')
-    // };
+    resetState = () => {
+        this.setState({
+            result: {},
+            search: '',
+            books: []
+        });
+    }
 
 
 
@@ -43,11 +62,22 @@ class Search extends Component {
                     name='search'
                     handleFormSubmit={this.handleFormSubmit}
                     value={this.state.search}
-                    onChange={this.handleInputChange}
+                    handleInputChange={this.handleInputChange}
                 >
 
                 </SearchCard>
-                <Results></Results>
+                {this.state.books.map(book => {
+                    return (
+                        <Results
+                            key={book.id}
+                            textSnippet={book.searchInfo.textSnippet}
+                            authors={book.volumeInfo.authors}
+                            title={book.volumeInfo.title}
+                            link={book.volumeInfo.previewLink}
+                            image={book.volumeInfo.imageLinks.thumbnail}
+                        />
+                    )
+                })}
             </Wrapper>
         )
     }

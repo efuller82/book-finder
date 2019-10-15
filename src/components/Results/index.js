@@ -1,14 +1,22 @@
 import React from 'react';
-// import SearchCard from '../SearchCard';
+import './style.css';
 
-//! working on this whole page
 function Results(props) {
     return (
         <div className='card'>
             <div className='card-body'>
                 <h2 className='card-title'>
-                    Results
-            </h2>
+                    {props.title}
+                </h2>
+                <h4>{props.authors}</h4>
+                <div className='card-content'>
+                    <p id='snippet'>{props.textSnippet}</p>
+                    <img src={props.image} alt='The cover of the book' id='bookCover' />
+                </div>
+                <div>
+                    <a href={props.link} className='btn btn-success' role='button'>View</a>
+                    <button className='btn btn-danger'>Save</button>
+                </div>
             </div>
         </div>
 
