@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 
 var express = require('express');
 
+
 // Database configuration
 var databaseUrl = 'bookFinder';
 var collections = ['books'];
@@ -17,9 +18,9 @@ db.on('error', function (error) {
 });
 
 module.exports = function (app) {
-    app.get('/api/books', function (req, res) {
+    app.get('/books', function (req, res) {
         //find all saved books
-        db.books.find({})
+        models.books.find({})
             .then(function (dbBook) {
                 res.json(dbBook);
             })
@@ -28,7 +29,7 @@ module.exports = function (app) {
             });
     })
 
-    app.post('/api/books', function (req, res) {
+    app.post('/books', function (req, res) {
         models.books.create(req.body)
             .then(function (response) {
                 console.log(response);
