@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 
-const routes = require('./routes');
+const routes = require('./routes/api');
 const PORT = process.env.PORT || 3000;
 
 // initialize express
@@ -14,7 +14,7 @@ app.use(express.static("public"));
 
 
 // define api routes
-require('./routes/api/')(app);
+app.use(routes);
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/bookFinder", { useNewUrlParser: true });
 

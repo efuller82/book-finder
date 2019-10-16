@@ -35,8 +35,4 @@ module.exports = function (app) {
                 res.json({ successful: response });
             });
     });
-
-
-
 }
-
