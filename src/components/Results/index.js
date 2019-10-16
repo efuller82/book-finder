@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.css';
-import books from '../../routes/api/books';
 
 function Results(props) {
+
     return (
         <div className='card'>
             <div className='card-body'>
@@ -16,7 +16,7 @@ function Results(props) {
                 </div>
                 <div>
                     <a href={props.link} className='btn btn-success' role='button'>View</a>
-                    <button className='btn btn-danger' id={books.id} onClick={(event) => props.handleSavedButton(event)}>Save</button>
+                    <button className='btn btn-danger' id={props.bookId} onClick={(event) => props.handleSavedButton(event)}>Save</button>
                 </div>
             </div>
         </div>

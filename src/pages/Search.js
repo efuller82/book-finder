@@ -80,6 +80,7 @@ class Search extends Component {
                 {this.state.books.map(book => {
                     return (
                         <Results
+                            bookId={book.id}
                             key={book.id}
                             textSnippet={book.searchInfo.textSnippet}
                             authors={book.volumeInfo.authors}
