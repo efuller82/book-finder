@@ -50,7 +50,8 @@ class Search extends Component {
         let savedBooks = this.state.books.filter(book => book.id === event.target.id)
         savedBooks = savedBooks[0];
         API.saveBook(savedBooks)
-            .then(this.setState({ message: alert('book saved') }))
+            // console.log(savedBooks)
+            .then(this.setState({ message: alert('click registered') }))
             .catch(err => console.log(err))
     }
 
